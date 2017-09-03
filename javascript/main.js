@@ -2,16 +2,32 @@ window.onload = function () {
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
 
+    var select = document.getElementById('painterWidth');
+    var painterColor = document.getElementsByClassName('painterColor');
+    var painterColors = painterColor[0].getElementsByTagName('span');
+    var painterCurrentColor = document.getElementsByClassName('currentColor');
+
     var Top = canvas.offsetTop;
     var Left = canvas.offsetLeft;
     var oldX,oldY;
-    var paintWidth = 5;
-    var paintColor = 'red';
+    var paintWidth = parseInt(select.value);
+    var paintColor = painterCurrentColor[0].style.color;
     var moveStart = false;
 
     canvas.addEventListener('mousemove',move,true);
     canvas.addEventListener('mousedown',down,false);
     canvas.addEventListener('mouseup',up,false);
+
+    select.onclick = function(){
+        paintWidth = parseInt(select.value);
+    };
+
+    for(var i=0; i<painterColors.length;  i++){
+        painterColors[i].onclick = function(){
+            painterCurrentColor[0].style.color = this.style.color;
+            paintColor = painterCurrentColor[0].style.color;
+        }
+    }
 
     function move(e){
         if (moveStart){
