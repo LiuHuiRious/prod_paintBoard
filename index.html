@@ -11,6 +11,47 @@
     <script src="javascript/main.js"></script>
 </head>
 <body>
-
+<div class="diyNavbar">
+    <a>画板</a>
+</div>
+<div class="painter">
+    <canvas id="canvas" width="600" height="300" style="display: block;margin: 15px auto;border: 1px solid #ccc;">
+        您的浏览器不支持Canvas，请更换浏览器后重试！
+    </canvas>
+    <div class="toolMenu">
+        <div class="painterColor">
+            <p>颜色<span class="glyphicon glyphicon-stop" style="color: black;"></span></p>
+            <span class="glyphicon glyphicon-stop" style="color: blue;"></span>
+            <span class="glyphicon glyphicon-stop" style="color: green;"></span>
+            <span class="glyphicon glyphicon-stop" style="color: red;"></span><br>
+            <span class="glyphicon glyphicon-stop" style="color: yellow;"></span>
+            <span class="glyphicon glyphicon-stop" style="color: pink;"></span>
+            <span class="glyphicon glyphicon-stop" style="color: black;"></span>
+        </div>
+        <div class="painterSize">
+            <p>宽度</p>
+            <select>
+                <option>2px</option>
+                <option>4px</option>
+                <option>8px</option>
+                <option>12px</option>
+                <option>16px</option>
+                <option>24px</option>
+                <option>32px</option>
+                <option>48px</option>
+                <option>64px</option>
+            </select>
+        </div>
+        <div class="painterType">
+            <p>样式</p>
+            <span class="glyphicon glyphicon-pencil"></span>
+            <span style="font-size: 20px">/</span>
+            <span style="display: block;border: 1px solid black;width: 15px;height: 15px;"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
 </body>
 </html>
