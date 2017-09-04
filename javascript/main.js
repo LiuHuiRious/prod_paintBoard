@@ -6,13 +6,22 @@ window.onload = function () {
     var painterColor = document.getElementsByClassName('painterColor');
     var painterColors = painterColor[0].getElementsByTagName('span');
     var painterCurrentColor = document.getElementsByClassName('currentColor');
+    var pencil = document.getElementsByClassName('pencil');
+    var drawLine = document.getElementsByClassName('drawLine');
+    var drawRect = document.getElementsByClassName('drawRect');
+    var drawCircle = document.getElementsByClassName('drawCircle');
+    var painterErase = document.getElementsByClassName('painterErase');
+    var painterErases = painterErase[0].getElementsByTagName('span');
 
+
+    var painterType = 'draw';
     var Top = canvas.offsetTop;
     var Left = canvas.offsetLeft;
     var oldX,oldY;
     var paintWidth = parseInt(select.value);
     var paintColor = painterCurrentColor[0].style.color;
     var moveStart = false;
+    var painterEraseWidth = 2;
 
     canvas.addEventListener('mousemove',move,true);
     canvas.addEventListener('mousedown',down,false);
@@ -29,20 +38,28 @@ window.onload = function () {
         }
     }
 
+    for(var j=0; j<painterErases.length;j++){
+        painterErases[j].index = j;
+        painterErases[j].onclick = function () {
+            painterType = 'erase';
+            painterEraseWidth = 1 + Math.pow(3,this.index);
+        }
+    }
+
     function move(e){
         if (moveStart){
             var newX = e.pageX - Left;
             var newY = e.pageY - Top;
-
-            context.beginPath();
-            context.moveTo(oldX,oldY);
-            context.lineTo(newX,newY);
-            context.strokeStyle = paintColor;
-            context.lineCap = 'round';
-            context.lineWidth = paintWidth;
-            context.stroke();
-            oldX = newX;
-            oldY = newY;
+            if(painterType === 'draw') {
+                draw(context, newX, newY);
+                oldX = newX;
+                oldY = newY;
+            }
+            else {
+                clear(context);
+                oldX = newX;
+                oldY = newY;
+            }
         }
     }
 
@@ -55,4 +72,19 @@ window.onload = function () {
     function up(){
         moveStart = false;
     }
-}
+
+    function draw(ctx,newX,newY){
+        ctx.beginPath();
+        ctx.moveTo(oldX,oldY);
+        ctx.lineTo(newX,newY);
+        ctx.strokeStyle = paintColor;
+        ctx.lineCap = 'round';
+        ctx.lineWidth = paintWidth;
+        ctx.stroke();
+    }
+
+    function clear(ctx){
+        ctx.beginPath();
+        ctx.clearRect(oldX-painterEraseWidth,oldY-painterEraseWidth,2*painterEraseWidth,2*painterEraseWidth);
+    }
+};

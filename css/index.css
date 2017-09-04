@@ -22,7 +22,7 @@ body,html{
 .painterColor,.painterSize,.painterType{
     float: left;
     margin-left: 50px;
-    width:100px;
+    width:150px;
 }
 .painterSize input{
     width: 30px;
