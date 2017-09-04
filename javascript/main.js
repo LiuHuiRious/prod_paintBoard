@@ -14,6 +14,9 @@ window.onload = function () {
     var painterErases = painterErase[0].getElementsByTagName('span');
     var painterPencil = document.getElementsByClassName('glyphicon-pencil');
 
+    var newCanvas = document.getElementsByClassName('newCanvas');
+    var saveCanvas = document.getElementsByClassName('saveCanvas');
+
 
     var painterType = 'draw';
     var Top = canvas.offsetTop;
@@ -49,7 +52,20 @@ window.onload = function () {
     painterPencil[0].onclick = function () {
         painterType = 'draw';
     };
+    newCanvas[0].onclick = function () {
+        context.clearRect(0,0,canvas.width,canvas.height);
+    };
+    saveCanvas[0].onclick = function () {
+        saveImg();
+        var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+        if(!isChrome){
+            alert('非常抱歉！保存为图片的功能只能在chrome浏览器下正常进行！');
+        }
+    };
 
+    function speak(){
+        alert(1)
+    }
     function move(e){
         if (moveStart){
             var newX = e.pageX - Left;
@@ -90,5 +106,15 @@ window.onload = function () {
     function clear(ctx){
         ctx.beginPath();
         ctx.clearRect(oldX-painterEraseWidth,oldY-painterEraseWidth,2*painterEraseWidth,2*painterEraseWidth);
+    }
+    function saveImg(){
+        var type = 'png';
+        var imgData = canvas.toDataURL(type);
+        var imgSave = document.createElement('a');
+        imgSave.href = imgData;
+        imgSave.download = new Date().getMinutes() + '.' + type;
+        var event=document.createEvent('MouseEvents');
+        event.initMouseEvent('click',true,false,window,0,0,0,0,0,false,false,false,false,0,null);
+        imgSave.dispatchEvent(event);
     }
 };

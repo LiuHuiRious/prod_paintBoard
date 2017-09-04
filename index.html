@@ -11,9 +11,24 @@
     <script src="javascript/main.js"></script>
 </head>
 <body>
-<div class="diyNavbar">
-    <a>画板</a>
-</div>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="navbar-brand">画板</div>
+        </div>
+        <div class="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">编辑选项<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="newCanvas"><span class="glyphicon glyphicon-folder-open"></span> 新建画板</a></li>
+                        <li><a href="#" class="saveCanvas"><span class="glyphicon glyphicon-folder-close"></span> 保存画板</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div class="painter">
     <canvas id="canvas" width="600" height="350" style="display: block;margin: 15px auto;border: 1px solid #ccc;">
         您的浏览器不支持Canvas，请更换浏览器后重试！
