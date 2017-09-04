@@ -12,6 +12,7 @@ window.onload = function () {
     var drawCircle = document.getElementsByClassName('drawCircle');
     var painterErase = document.getElementsByClassName('painterErase');
     var painterErases = painterErase[0].getElementsByTagName('span');
+    var painterPencil = document.getElementsByClassName('glyphicon-pencil');
 
 
     var painterType = 'draw';
@@ -45,6 +46,9 @@ window.onload = function () {
             painterEraseWidth = 1 + Math.pow(3,this.index);
         }
     }
+    painterPencil[0].onclick = function () {
+        painterType = 'draw';
+    };
 
     function move(e){
         if (moveStart){

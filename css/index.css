@@ -19,10 +19,13 @@ body,html{
     height:300px;
     margin: 15px auto;
 }
-.painterColor,.painterSize,.painterType{
+.painterColor,.painterSize,.painterErase,.painterPencil{
     float: left;
     margin-left: 50px;
-    width:150px;
+    width:100px;
+}
+.painterPencil{
+    width: 30px;
 }
 .painterSize input{
     width: 30px;
